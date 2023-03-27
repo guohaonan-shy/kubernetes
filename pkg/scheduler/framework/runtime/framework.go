@@ -441,7 +441,7 @@ func (f *frameworkImpl) expandMultiPointPlugins(profile *config.KubeSchedulerPro
 			enabledSet.insert(plugin.Name)
 		}
 
-		disabledSet := sets.NewString()
+		disabledSet := sets.New[string]()
 		for _, disabledPlugin := range e.plugins.Disabled {
 			disabledSet.Insert(disabledPlugin.Name)
 		}
@@ -550,7 +550,7 @@ func registerClusterEvents(name string, eventToPlugins map[framework.ClusterEven
 func updatePluginList(pluginList interface{}, pluginSet config.PluginSet, pluginsMap map[string]framework.Plugin) error {
 	plugins := reflect.ValueOf(pluginList).Elem()
 	pluginType := plugins.Type().Elem()
-	set := sets.NewString()
+	set := sets.sets.New[string]()
 	for _, ep := range pluginSet.Enabled {
 		pg, ok := pluginsMap[ep.Name]
 		if !ok {

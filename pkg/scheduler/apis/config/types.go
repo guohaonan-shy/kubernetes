@@ -247,7 +247,7 @@ func (p *Plugins) Names() []string {
 		p.Permit,
 		p.QueueSort,
 	}
-	n := sets.NewString()
+	n := sets.New[string]()
 	for _, e := range extensions {
 		for _, pg := range e.Enabled {
 			n.Insert(pg.Name)

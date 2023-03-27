@@ -368,7 +368,7 @@ func TestFailureHandler_NodeNotFound(t *testing.T) {
 			s.FailureHandler(ctx, fwk, testPodInfo, framework.NewStatus(framework.Unschedulable).WithError(tt.injectErr), nil, time.Now())
 
 			gotNodes := schedulerCache.Dump().Nodes
-			gotNodeNames := sets.NewString()
+			gotNodeNames := sets.New[string]()
 			for _, nodeInfo := range gotNodes {
 				gotNodeNames.Insert(nodeInfo.Node().Name)
 			}

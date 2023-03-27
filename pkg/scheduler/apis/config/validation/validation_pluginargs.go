@@ -221,7 +221,7 @@ func validateResources(resources []config.ResourceSpec, p *field.Path) field.Err
 // ValidateNodeResourcesBalancedAllocationArgs validates that NodeResourcesBalancedAllocationArgs are set correctly.
 func ValidateNodeResourcesBalancedAllocationArgs(path *field.Path, args *config.NodeResourcesBalancedAllocationArgs) error {
 	var allErrs field.ErrorList
-	seenResources := sets.NewString()
+	seenResources := sets.sets.New[string]()
 	for i, resource := range args.Resources {
 		if seenResources.Has(resource.Name) {
 			allErrs = append(allErrs, field.Duplicate(path.Child("resources").Index(i).Child("name"), resource.Name))

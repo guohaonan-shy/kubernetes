@@ -55,7 +55,7 @@ func pluginsNames(p *v1beta3.Plugins) []string {
 		p.Permit,
 		p.QueueSort,
 	}
-	n := sets.NewString()
+	n := sets.sets.New[string]()
 	for _, e := range extensions {
 		for _, pg := range e.Enabled {
 			n.Insert(pg.Name)
@@ -69,7 +69,7 @@ func setDefaults_KubeSchedulerProfile(prof *v1beta3.KubeSchedulerProfile) {
 	prof.Plugins = mergePlugins(getDefaultPlugins(), prof.Plugins)
 	// Set default plugin configs.
 	scheme := GetPluginArgConversionScheme()
-	existingConfigs := sets.NewString()
+	existingConfigs := sets.sets.New[string]()
 	for j := range prof.PluginConfig {
 		existingConfigs.Insert(prof.PluginConfig[j].Name)
 		args := prof.PluginConfig[j].Args.Object

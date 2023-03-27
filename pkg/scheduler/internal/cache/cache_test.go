@@ -1703,7 +1703,7 @@ func compareCacheWithNodeInfoSnapshot(t *testing.T, cache *cacheImpl, snapshot *
 
 	expectedNodeInfoList := make([]*framework.NodeInfo, 0, cache.nodeTree.numNodes)
 	expectedHavePodsWithAffinityNodeInfoList := make([]*framework.NodeInfo, 0, cache.nodeTree.numNodes)
-	expectedUsedPVCSet := sets.NewString()
+	expectedUsedPVCSet := sets.New[string]()
 	nodesList, err := cache.nodeTree.list()
 	if err != nil {
 		t.Fatal(err)
