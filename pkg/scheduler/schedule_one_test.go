@@ -2177,7 +2177,7 @@ func TestFindFitSomeError(t *testing.T) {
 		t.Errorf("unexpected failed status map: %v", diagnosis.NodeToStatusMap)
 	}
 
-	if diff := cmp.Diff(sets.NewString("MatchFilter"), diagnosis.UnschedulablePlugins); diff != "" {
+	if diff := cmp.Diff(sets.New("MatchFilter"), diagnosis.UnschedulablePlugins); diff != "" {
 		t.Errorf("Unexpected unschedulablePlugins: (-want, +got): %s", diagnosis.UnschedulablePlugins)
 	}
 

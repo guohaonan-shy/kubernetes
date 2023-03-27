@@ -31,7 +31,7 @@ import (
 	"k8s.io/kubernetes/pkg/scheduler/apis/config"
 )
 
-var supportedScoringStrategyTypes = sets.NewString(
+var supportedScoringStrategyTypes = sets.New(
 	string(config.LeastAllocated),
 	string(config.MostAllocated),
 	string(config.RequestedToCapacityRatio),
@@ -148,7 +148,7 @@ func validateTopologyKey(p *field.Path, v string) field.ErrorList {
 }
 
 func validateWhenUnsatisfiable(p *field.Path, v v1.UnsatisfiableConstraintAction) *field.Error {
-	supportedScheduleActions := sets.NewString(string(v1.DoNotSchedule), string(v1.ScheduleAnyway))
+	supportedScheduleActions := sets.New(string(v1.DoNotSchedule), string(v1.ScheduleAnyway))
 
 	if len(v) == 0 {
 		return field.Required(p, "can not be empty")
